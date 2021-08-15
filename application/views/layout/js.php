@@ -32,3 +32,29 @@
         });
     })
 </script>
+<?= $this->session->userdata('pesan'); ?>
+<?php $this->session->unset_userdata('pesan');
+?>
+<script>
+    function logout() {
+        swal({
+                title: "Are you sure?",
+                text: "Yakin keluar aplikasi ?!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Berhasil logout!", {
+                        icon: "success",
+                    });
+                    setInterval(function() {
+                        window.location.replace("<?= base_url('welcome/logout') ?>");
+                    }, 1500);
+                } else {
+                    swal("Batal logout!");
+                }
+            });
+    }
+</script>

@@ -17,4 +17,6 @@
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
 	-->
+    <script src="<?= base_url('assets/js/sweetalert.min.js') ?>"></script>
+
 </head>
