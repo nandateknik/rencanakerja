@@ -53,7 +53,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Profile</a>
                         <a class="dropdown-item" href="#">Billing</a>
-                        <a class="dropdown-item" href="#">Customize</a>
+                        <a class="dropdown-item" href="<?= base_url('setting/perusahaan') ?>">Perusahaan</a>
                     </div>
                 </li>
             </ul>

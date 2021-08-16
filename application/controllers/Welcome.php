@@ -26,20 +26,6 @@ class Welcome extends CI_Controller
 		$this->session->set_userdata('pesan', $data);
 	}
 
-	public function success($title, $text)
-	{
-		$data = '
-        <script>
-        swal({
-            title: "' . $title . '",
-            text: "' . $text . '!",
-            icon: "success",
-            button: "Confirm",
-        });
-        </script>';
-		$this->session->set_userdata('pesan', $data);
-	}
-
 	public function index()
 	{
 		$this->form_validation->set_rules('username', 'Username', 'required');
