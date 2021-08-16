@@ -24,6 +24,7 @@ class Setting_model extends CI_Model
 
     public function updateimage()
     {
+        array_map('unlink', glob(FCPATH . "assets/upload/1.*"));
 
         $config['upload_path']          = './assets/upload/';
         $config['allowed_types']        = 'gif|jpg|png';
@@ -36,7 +37,6 @@ class Setting_model extends CI_Model
         $this->load->library('upload', $config);
 
         if ($this->upload->do_upload('foto')) {
-            array_map('unlink', glob(FCPATH . "upload/product/1.*"));
             $foto = $this->upload->data("file_name");
             $this->db->where('id', 1);
             $this->db->update('perusahaan', ['foto' => $foto]);
