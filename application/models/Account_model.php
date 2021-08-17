@@ -13,6 +13,16 @@ class Account_model extends CI_Model
         return $this->db->get('role')->result();
     }
 
+    public function updatepw()
+    {
+        $id = $this->session->userdata('id');
+        $post = $this->input->post();
+        $this->db->where('id', $id);
+        $this->db->update('user', ['password' => $post['password']]);
+        return $this->db->affected_rows();
+    }
+
+
     public function updateaccount()
     {
         $post = $this->input->post();

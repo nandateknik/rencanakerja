@@ -74,6 +74,22 @@ class Account extends CI_Controller
         }
         redirect(base_url('account'));
     }
+
+    public function update_password()
+    {
+        $this->form_validation->set_rules('password', 'Password', 'required|matches[passconf]');
+        $this->form_validation->set_rules('passconf', 'Confirm Password', 'required|matches[password]');
+
+        if ($this->form_validation->run()) {
+            if ($this->account_model->updatepw()) {
+                $this->success('Berhasil !', 'Kamu berhasil update password');
+            } else {
+                $this->danger('Gagal !', 'Gagal update password');
+            }
+        }
+
+        redirect(base_url('account'));
+    }
 }
     
     /* End of file Account.php */

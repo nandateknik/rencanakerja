@@ -45,6 +45,34 @@ class Setting_model extends CI_Model
             return false;
         }
     }
+
+    function getUser()
+    {
+        return $this->db->get('user')->result();
+    }
+
+    public function resetpw($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('user', ['password' => 'user']);
+        return $this->db->affected_rows();
+    }
+
+    public function updatepw()
+    {
+        $id = $this->session->userdata('id');
+        $post = $this->input->post();
+        $this->db->where('id', $id);
+        $this->db->update('user', ['password' => $post['password']]);
+        return $this->db->affected_rows();
+    }
+
+    public function updatestatus($id, $nilai)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('user', ['is_active' => $nilai]);
+        return $this->db->affected_rows();
+    }
 }
     
     /* End of file Setting_model.php */

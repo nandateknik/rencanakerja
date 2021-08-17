@@ -42,7 +42,18 @@ class Setting extends CI_Controller
 
     public function User()
     {
-        $this->load->view('setting/user');
+        $data['user'] = $this->setting_model->getUser();
+        $this->load->view('setting/user', $data);
+    }
+
+    public function ResetPassword($id = null)
+    {
+        if (!empty($this->setting_model->resetpw($id))) {
+            $this->success('Berhasil', 'Kamu berhasil reset password');
+        } else {
+            $this->danger('Gagal', 'Kamu gagal reset password');
+        }
+        redirect(base_url('setting/user'));
     }
 
     public function Perusahaan()
@@ -74,6 +85,33 @@ class Setting extends CI_Controller
             }
         }
         redirect(base_url('setting/perusahaan'));
+    }
+
+    public function account($id = null)
+    {
+        $data['account'] = $this->setting_model->getAccount($id);
+        $data['role'] = $this->account_model->getRole();
+        $this->load->view('account', $data);
+    }
+
+    public function aktif($id = null)
+    {
+        if ($this->setting_model->updatestatus($id, 1)) {
+            $this->success('Berhasil!', 'Sudah diaktifkan');
+        } else {
+            $this->danger('Gagal !', 'Gagal diaktifkan');
+        }
+        redirect('setting/user');
+    }
+
+    public function nonaktif($id = null)
+    {
+        if ($this->setting_model->updatestatus($id, 0)) {
+            $this->success('Berhasil!', 'Sudah diaktifkan');
+        } else {
+            $this->danger('Gagal !', 'Gagal diaktifkan');
+        }
+        redirect('setting/user');
     }
 }
     
