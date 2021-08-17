@@ -99,14 +99,14 @@
                     <div class="modal-body">
                         <div class="tm-block-cols">
                             <div class="tm-bg-primary-dark tm-block tm-block-settings">
-                                <form method="post" action="<?= base_url('account/update_password') ?>" class="tm-signup-form row">
+                                <form method="post" action="<?= base_url('account/update_account') ?>" class="tm-signup-form row">
                                     <div class="form-group col-lg-12">
                                         <label for="password">Password Baru</label>
                                         <input id="password" name="password" type="password" class="form-control validate" />
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label for="confpw">Confirm Password</label>
-                                        <input id="confpw" name="passconf" type="password" class="form-control validate" />
+                                        <input id="confpw" name="confpw" type="password" class="form-control validate" />
                                     </div>
                                     <div class="col-6">
                                         <button type="button" href="javascript:()" data-dismiss="modal" data-toggle="modal" data-target="#modelId" class="btn btn-primary btn-block text-uppercase">

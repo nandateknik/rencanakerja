@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col">
                     <p class="text-white mt-5 mb-5">
-                        <a class="badge badge-primary p-3" href="#">
+                        <a class="badge badge-primary p-3" href="javascript:()" data-toggle="modal" data-target="#adduser">
                             <i class="fa fa-plus"></i> Add user
                         </a>
                     </p>
@@ -58,6 +58,57 @@
         <?php $this->load->view('layout/footer') ?>
         <?php $this->load->view('layout/js') ?>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="adduser" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="tm-block-cols">
+                        <div class="tm-bg-primary-dark tm-block tm-block-settings">
+                            <form method="post" action="<?= base_url('setting/register') ?>" class="tm-signup-form row">
+                                <div class="form-group col-lg-12">
+                                    <label for="nama">Nama</label>
+                                    <input id="nama" name="nama" type="text" class="form-control validate" />
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="username">Username</label>
+                                    <input id="ussername" name="username" type="text" class="form-control validate" />
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="password">Password</label>
+                                    <input id="password" name="password" type="password" class="form-control validate" />
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="confpw">Confirm Password</label>
+                                    <input id="confpw" name="passconf" type="password" class="form-control validate" />
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="role_id">Hak Akses</label>
+                                    <select name="role_id" id="role_id" class="custom-select">
+                                        <option value="2">Admin</option>
+                                        <option value="3">User</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" href="javascript:()" data-dismiss="modal" data-toggle="modal" data-target="#modelId" class="btn btn-primary btn-block text-uppercase">
+                                        Close
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                                        REGISTER
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>

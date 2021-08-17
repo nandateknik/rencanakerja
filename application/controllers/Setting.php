@@ -113,6 +113,22 @@ class Setting extends CI_Controller
         }
         redirect('setting/user');
     }
+
+    public function register()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('username', 'username', 'required');
+        $this->form_validation->set_rules('password', 'password', 'required|matches[passconf]');
+        $this->form_validation->set_rules('passconf', 'passconf', 'required|matches[password]');
+        $this->form_validation->set_rules('role_id', 'role_id', 'required');
+
+        if ($this->form_validation->run()) {
+            $this->setting_model->register();
+            $this->success('Berhasil!', 'Akun sudah dibuat silahkan login');
+        }
+
+        redirect(base_url('setting/user'));
+    }
 }
     
     /* End of file Setting.php */

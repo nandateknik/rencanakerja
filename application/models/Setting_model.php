@@ -73,6 +73,20 @@ class Setting_model extends CI_Model
         $this->db->update('user', ['is_active' => $nilai]);
         return $this->db->affected_rows();
     }
+
+    public function register()
+    {
+        $post = $this->input->post();
+        $data = array(
+            'nama' => $post['nama'],
+            'username' => $post['username'],
+            'password' => $post['password'],
+            'is_active' => 1,
+            'role_id' => $post['role_id'],
+            'foto' => 'no-image.png'
+        );
+        $this->db->insert('user', $data);
+    }
 }
     
     /* End of file Setting_model.php */
