@@ -27,10 +27,7 @@ class Account_model extends CI_Model
     {
         $post = $this->input->post();
         $data = array(
-            'nama' => $post['nama'],
-            'username' => $post['username'],
-            'role_id' => $post['role_id'],
-            'is_active' => $post['is_active'],
+            'nama' => $post['nama']
         );
         $id = $this->session->userdata('id');
         $this->db->where('id', $id);

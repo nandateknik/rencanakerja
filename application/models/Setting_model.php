@@ -5,6 +5,39 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Setting_model extends CI_Model
 {
+
+    public function getAccount($id)
+    {
+        return $this->db->get_where('user', ['id' => $id])->row();
+    }
+    public function getRole()
+    {
+        return $this->db->get('role')->result();
+    }
+
+    public function updateaccount($id)
+    {
+        $post = $this->input->post();
+        $data = array(
+            'nama' => $post['nama'],
+            'is_active' => $post['is_active'],
+            'divisi' => $post['divisi'],
+            'role_id' => $post['role_id']
+        );
+        $this->db->where('id', $id);
+        $this->db->update('user', $data);
+    }
+
+    public function getDivisi()
+    {
+        return $this->db->get('divisi')->result();
+    }
+
+    public function insertDivisi()
+    {
+        $this->db->insert('divisi', $this->input->post());
+    }
+
     public function getperusahaan()
     {
         return $this->db->get_where('perusahaan', ['id' => 1])->row();

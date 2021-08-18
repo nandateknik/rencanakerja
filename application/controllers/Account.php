@@ -53,7 +53,6 @@ class Account extends CI_Controller
     public function update_account()
     {
         $this->form_validation->set_rules('nama', 'nama', 'required');
-        $this->form_validation->set_rules('username', 'username', 'required');
 
         if ($this->form_validation->run()) {
             $this->account_model->updateaccount();

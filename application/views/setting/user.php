@@ -41,8 +41,8 @@
                                             </label>
                                         </td>
                                         <td>
-                                            <a href="<?= base_url('setting/resetpassword/') . $list->id ?>" title="reset password" class="badge badge-warning"><i class="fa fa-eye"></i> RESET</a>
                                             <a href=" <?= $list->is_active == (1) ? '' . base_url('setting/nonaktif/' . $list->id) . '' : '' . base_url('setting/aktif/' . $list->id) . '' ?>" title="menu account" class="badge  <?= $list->is_active == (1) ? 'badge-danger' : 'badge-success' ?>"><i class="fa fa-user"></i> <?= $list->is_active == (1) ? 'Nonaktifkan' : 'Aktifkan' ?></a>
+                                            <a href="<?= base_url('setting/profile_account/' . $list->id) ?> " class="badge badge-primary"><i class="fa fa-user"></i> Profile</a>
 
                                         </td>
                                     </tr>

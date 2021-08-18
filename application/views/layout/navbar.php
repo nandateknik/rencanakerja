@@ -10,48 +10,48 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto h-100">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">
+                    <a class="nav-link <?= $this->uri->segment(1) == ('dashboard') ? 'active' : ''; ?>" href="<?= base_url('dashboard') ?>">
                         <i class="fas fa-tachometer-alt"></i>
                         Dashboard
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown <?= $this->uri->segment(1) == ('mission') ? 'active' : ''; ?>">
 
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="far fa-file-alt"></i>
                         <span>
-                            Reports <i class="fas fa-angle-down"></i>
+                            Mission <i class="fas fa-angle-down"></i>
                         </span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Daily Report</a>
+                        <a class="dropdown-item" href="<?= base_url('mission/tambah') ?>">Tambah Mission</a>
                         <a class="dropdown-item" href="#">Weekly Report</a>
                         <a class="dropdown-item" href="#">Yearly Report</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="products.html">
-                        <i class="fas fa-shopping-cart"></i>
-                        Products
+                    <a class="nav-link <?= $this->uri->segment(1) == ('agenda') ? 'active' : ''; ?>" href="<?= base_url('agenda') ?>" href="<?= base_url('agenda') ?>">
+                        <i class="fas fa-book"></i>
+                        Agenda
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="accounts.html">
+                    <a class="nav-link <?= $this->uri->segment(1) == ('account') ? 'active' : ''; ?>" href="<?= base_url('account') ?>">
                         <i class="far fa-user"></i>
                         Accounts
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link  <?= $this->uri->segment(1) == ('setting') ? 'active' : ''; ?> dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-cog"></i>
                         <span>
                             Settings <i class="fas fa-angle-down"></i>
                         </span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="<?= base_url('setting/manajemen') ?>">Manajemen</a>
                         <a class="dropdown-item" href="<?= base_url('setting/user') ?>">User</a>
                         <a class="dropdown-item" href="<?= base_url('setting/perusahaan') ?>">Perusahaan</a>
                     </div>

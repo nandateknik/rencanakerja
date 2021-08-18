@@ -40,6 +40,27 @@ class Setting extends CI_Controller
         $this->session->set_userdata('pesan', $data);
     }
 
+    public function profile_account($id = null)
+    {
+
+        $data['account'] = $this->setting_model->getAccount($id);
+        $data['role'] = $this->setting_model->getRole();
+        $data['divisi'] = $this->setting_model->getDivisi();
+        $this->load->view('setting/account', $data);
+    }
+
+    public function update_account($id)
+    {
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+
+        if ($this->form_validation->run()) {
+            $this->setting_model->updateaccount($id);
+            $this->success('Berhasil !', 'Kamu sudah update data account kamu');
+        }
+
+        redirect(base_url('setting/profile_account/' . $id));
+    }
+
     public function User()
     {
         $data['user'] = $this->setting_model->getUser();
@@ -128,6 +149,22 @@ class Setting extends CI_Controller
         }
 
         redirect(base_url('setting/user'));
+    }
+
+    public function manajemen()
+    {
+        $data['divisi'] = $this->setting_model->getDivisi();
+        $this->load->view('setting/manajemen', $data);
+    }
+
+    public function insertdivisi()
+    {
+        $this->form_validation->set_rules('divisi', 'divisi', 'required');
+        if ($this->form_validation->run()) {
+            $this->setting_model->insertDivisi();
+            $this->success('Berhasil !', 'Kamu berhasil menambah divisi baru');
+        }
+        redirect(base_url('setting/manajemen'));
     }
 }
     
