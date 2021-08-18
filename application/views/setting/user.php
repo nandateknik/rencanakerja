@@ -84,11 +84,20 @@
                                     <label for="confpw">Confirm Password</label>
                                     <input id="confpw" name="passconf" type="password" class="form-control validate" />
                                 </div>
-                                <div class="form-group col-lg-12">
+                                <div class="form-group col-lg-6">
                                     <label for="role_id">Hak Akses</label>
                                     <select name="role_id" id="role_id" class="custom-select">
-                                        <option value="2">Admin</option>
-                                        <option value="3">User</option>
+                                        <?php foreach ($role as $data1) : ?>
+                                            <option value="<?= $data1->id ?>"><?= $data1->role ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="role_id">Divisi</label>
+                                    <select name="divisi" id="role_id" class="custom-select">
+                                        <?php foreach ($divisi as $data2) : ?>
+                                            <option value="<?= $data2->divisi ?>"><?= $data2->divisi ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="col-6">

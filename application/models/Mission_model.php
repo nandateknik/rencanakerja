@@ -11,11 +11,28 @@ class Mission_model extends CI_Model
         $data = array(
             'mission' => $post['mission'],
             'deskripsi' => $post['deskripsi'],
-            'prioritas' => $post['prioritas'],
+            'divisi' => $post['divisi'],
             'tanggal' => date('Y-m-d'),
-            'jam' => date('H:i')
+            'jam' => date('H:i'),
+            'status' => 'baru'
         );
         $this->db->insert('mission', $data);
+    }
+
+    public function getDivisi()
+    {
+        return $this->db->get('divisi')->result();
+    }
+
+    public function getByDate()
+    {
+        $post = $this->input->post();
+        $query = $this->db->select('*')
+            ->from('mission')
+            ->where('tanggal >=', $post['dari'])
+            ->where('tanggal <=', $post['hingga'])
+            ->get();
+        return $query->result();
     }
 }
 

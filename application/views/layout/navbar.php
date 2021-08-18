@@ -16,9 +16,9 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item dropdown <?= $this->uri->segment(1) == ('mission') ? 'active' : ''; ?>">
+                <li class="nav-item dropdown">
 
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link <?= $this->uri->segment(1) == ('mission') ? 'active' : ''; ?> dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="far fa-file-alt"></i>
                         <span>
                             Mission <i class="fas fa-angle-down"></i>
@@ -26,8 +26,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?= base_url('mission/tambah') ?>">Tambah Mission</a>
-                        <a class="dropdown-item" href="#">Weekly Report</a>
-                        <a class="dropdown-item" href="#">Yearly Report</a>
+                        <a class="dropdown-item" href="<?= base_url('mission/data') ?>">Data Mission</a>
                     </div>
                 </li>
                 <li class="nav-item">

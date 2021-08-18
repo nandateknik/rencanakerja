@@ -7,3 +7,9 @@
         </p>
     </div>
 </footer>
+
+<?php
+if (!$this->session->userdata('login')) {
+    redirect(base_url(''));
+}
+?>

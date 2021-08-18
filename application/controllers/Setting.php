@@ -63,6 +63,8 @@ class Setting extends CI_Controller
 
     public function User()
     {
+        $data['divisi'] = $this->setting_model->getDivisi();
+        $data['role'] = $this->setting_model->getRole();
         $data['user'] = $this->setting_model->getUser();
         $this->load->view('setting/user', $data);
     }

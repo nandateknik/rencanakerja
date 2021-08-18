@@ -25,11 +25,11 @@
                                         <textarea name="deskripsi" class="form-control validate tm-small" rows="5" required></textarea>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="category">Skala Prioritas</label>
-                                        <select name="prioritas" class="custom-select tm-select-accounts" id="category">
-                                            <option value="1" selected>Tinggi</option>
-                                            <option value="2">Sedang</option>
-                                            <option value="3">Rendah</option>
+                                        <label for="category">Divisi</label>
+                                        <select name="divisi" class="custom-select tm-select-accounts" id="category">
+                                            <?php foreach ($divisi as $data) : ?>
+                                                <option value="<?= $data->divisi ?>"><?= $data->divisi ?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
 

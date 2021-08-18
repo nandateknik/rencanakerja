@@ -42,6 +42,19 @@ class Mission extends CI_Controller
         $this->session->set_userdata('pesan', $data);
     }
 
+    public function data()
+    {
+        $this->form_validation->set_rules('dari', 'Dari Tanggal', 'required');
+        $this->form_validation->set_rules('hingga', 'hingga Tanggal', 'required');
+
+        if ($this->form_validation->run()) {
+            $data['data'] = $this->mission_model->getByDate();
+            $this->load->view('mission/data', $data);
+        }
+
+        $this->load->view('mission/data');
+    }
+
     public function index()
     {
     }
@@ -50,14 +63,14 @@ class Mission extends CI_Controller
     {
         $this->form_validation->set_rules('mission', 'mission', 'required');
         $this->form_validation->set_rules('deskripsi', 'deskripsi', 'required');
-        $this->form_validation->set_rules('prioritas', 'prioritas', 'required');
 
         if ($this->form_validation->run()) {
             $this->mission_model->insert();
             $this->success('Berhasil!', 'Berhasil menambah mission baru');
         }
 
-        $this->load->view('mission/tambah');
+        $data['divisi'] = $this->mission_model->getDivisi();
+        $this->load->view('mission/tambah', $data);
     }
 }
     

@@ -1,4 +1,9 @@
-<?php $this->load->view('layout/head'); ?>
+<?php
+$this->load->view('layout/head');
+if ($this->session->userdata('login')) {
+	redirect(base_url('dashboard'));
+}
+?>
 
 <body>
 	<div class="container tm-mt-big tm-mb-big">
