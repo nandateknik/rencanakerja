@@ -116,6 +116,7 @@ class Setting_model extends CI_Model
             'password' => $post['password'],
             'is_active' => 1,
             'role_id' => $post['role_id'],
+            'divisi' => $post['divisi'],
             'foto' => 'no-image.png'
         );
         $this->db->insert('user', $data);

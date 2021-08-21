@@ -11,6 +11,7 @@ class Agenda extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('agenda_model');
+        $this->load->model('histori_model');
     }
 
     public function danger($title, $text)
@@ -43,8 +44,13 @@ class Agenda extends CI_Controller
 
     public function index()
     {
-        $data['agendax'] = $this->agenda_model->missionx();
-        $data['agenda'] = $this->agenda_model->getMissionNow();
+        if ($this->session->userdata('role') == 1) {
+            $data['agendax'] = $this->agenda_model->missionx();
+            $data['agenda'] = $this->agenda_model->getMissionNow();
+        } else {
+            $data['agendax'] = $this->agenda_model->getMissionxNowByDivisi();
+            $data['agenda'] = $this->agenda_model->getMissionNowByDivisi();
+        }
         $this->load->view('agenda/show', $data);
     }
 
@@ -62,6 +68,7 @@ class Agenda extends CI_Controller
 
         if ($this->form_validation->run()) {
             $this->agenda_model->insertProgres($id);
+            $this->histori_model->insertLog('Menambah kemajuan kerja');
             $this->success('Berhasil !', 'Tambah Progress baru');
         }
 

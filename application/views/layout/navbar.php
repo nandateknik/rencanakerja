@@ -9,26 +9,30 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto h-100">
-                <li class="nav-item">
-                    <a class="nav-link <?= $this->uri->segment(1) == ('dashboard') ? 'active' : ''; ?>" href="<?= base_url('dashboard') ?>">
-                        <i class="fas fa-tachometer-alt"></i>
-                        Dashboard
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
+                <?php if ($this->session->userdata('role') == 1) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $this->uri->segment(1) == ('dashboard') ? 'active' : ''; ?>" href="<?= base_url('dashboard') ?>">
+                            <i class="fas fa-tachometer-alt"></i>
+                            Dashboard
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($this->session->userdata('role') != 3) : ?>
+                    <li class="nav-item dropdown">
 
-                    <a class="nav-link <?= $this->uri->segment(1) == ('mission') ? 'active' : ''; ?> dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="far fa-file-alt"></i>
-                        <span>
-                            Mission <i class="fas fa-angle-down"></i>
-                        </span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?= base_url('mission/tambah') ?>">Tambah Mission</a>
-                        <a class="dropdown-item" href="<?= base_url('mission/data') ?>">Data Mission</a>
-                    </div>
-                </li>
+                        <a class="nav-link <?= $this->uri->segment(1) == ('mission') ? 'active' : ''; ?> dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-file-alt"></i>
+                            <span>
+                                Mission <i class="fas fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="<?= base_url('mission/tambah') ?>">Tambah Mission</a>
+                            <a class="dropdown-item" href="<?= base_url('mission/data') ?>">Data Mission</a>
+                        </div>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a class="nav-link <?= $this->uri->segment(1) == ('agenda') ? 'active' : ''; ?>" href="<?= base_url('agenda') ?>" href="<?= base_url('agenda') ?>">
                         <i class="fas fa-book"></i>
@@ -42,19 +46,21 @@
                         Accounts
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link  <?= $this->uri->segment(1) == ('setting') ? 'active' : ''; ?> dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-cog"></i>
-                        <span>
-                            Settings <i class="fas fa-angle-down"></i>
-                        </span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?= base_url('setting/manajemen') ?>">Manajemen</a>
-                        <a class="dropdown-item" href="<?= base_url('setting/user') ?>">User</a>
-                        <a class="dropdown-item" href="<?= base_url('setting/perusahaan') ?>">Perusahaan</a>
-                    </div>
-                </li>
+                <?php if ($this->session->userdata('role') == 1) : ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  <?= $this->uri->segment(1) == ('setting') ? 'active' : ''; ?> dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                            <span>
+                                Settings <i class="fas fa-angle-down"></i>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="<?= base_url('setting/manajemen') ?>">Manajemen</a>
+                            <a class="dropdown-item" href="<?= base_url('setting/user') ?>">User</a>
+                            <a class="dropdown-item" href="<?= base_url('setting/perusahaan') ?>">Perusahaan</a>
+                        </div>
+                    </li>
+                <?php endif; ?>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">

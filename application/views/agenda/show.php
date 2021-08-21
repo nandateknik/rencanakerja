@@ -15,6 +15,7 @@
                                         <th scope="col">&nbsp;</th>
                                         <th scope="col">Mision Name</th>
                                         <th scope="col">status</th>
+                                        <th scope="col">Divisi</th>
                                         <th scope="col">&nbsp;</th>
                                     </tr>
                                 </thead>
@@ -24,6 +25,7 @@
                                             <th scope="row"><input type="checkbox" /></th>
                                             <td class="tm-product-name"><?= $list->mission ?></td>
                                             <td><?= $list->status ?> </td>
+                                            <td><?= $list->divisi ?> </td>
                                             <td>
                                                 <a href="<?= base_url('agenda/progres/' . $list->id) ?>" class="tm-product-delete-link">
                                                     <i class="fa fa-wrench tm-product-delete-icon"></i>

@@ -10,6 +10,22 @@ class Agenda_model extends CI_Model
         return $this->db->get_where('mission', ['tanggal' => date('Y/m/d')])->result();
     }
 
+    public function getMissionNowByDivisi()
+    {
+        $query = $this->db->select('*')
+            ->from('mission')
+            ->where('tanggal', date('Y/m/d'))
+            ->where('divisi', $this->session->userdata('divisi'))
+            ->get();
+        return $query->result();
+    }
+
+    public function getMissionxNowByDivisi()
+    {
+        $query = "SELECT * FROM mission WHERE status != 'selesai' && tanggal < '" . date('Y/m/d') . "'  && divisi = '" . $this->session->userdata('divisi') . "'";
+        return $this->db->query($query)->result();
+    }
+
     public function missionx()
     {
         $query = "SELECT * FROM mission WHERE status != 'selesai' && tanggal < '" . date('Y/m/d') . "' ";
@@ -35,6 +51,13 @@ class Agenda_model extends CI_Model
             'id_user' => $idUser
         );
         $this->db->insert('progres', $data);
+        $this->updateStatusMission($id, $post['status']);
+    }
+
+    public function updateStatusMission($id, $status)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('mission', ['status' => $status]);
     }
 
     public function getProgres($id)

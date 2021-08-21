@@ -24,15 +24,18 @@
                                         <label for="description">Deskripsi</label>
                                         <textarea name="deskripsi" class="form-control validate tm-small" rows="5" required></textarea>
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <label for="category">Divisi</label>
-                                        <select name="divisi" class="custom-select tm-select-accounts" id="category">
-                                            <?php foreach ($divisi as $data) : ?>
-                                                <option value="<?= $data->divisi ?>"><?= $data->divisi ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-
+                                    <?php if ($this->session->userdata('role') == 1) : ?>
+                                        <div class="form-group mb-3">
+                                            <label for="category">Divisi</label>
+                                            <select name="divisi" class="custom-select tm-select-accounts" id="category">
+                                                <?php foreach ($divisi as $data) : ?>
+                                                    <option value="<?= $data->divisi ?>"><?= $data->divisi ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    <?php else : ?>
+                                        <input type="hidden" value="<?= $this->session->userdata('divisi') ?>" name="divisi" id="">
+                                    <?php endif; ?>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary btn-block text-uppercase">Apply</button>

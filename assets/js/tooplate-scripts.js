@@ -24,18 +24,18 @@ function drawLineChart() {
       type: "line",
       data: {
         labels: [
-          "January",
-          "February",
-          "March",
+          "Januari",
+          "Febuari",
+          "Maret",
           "April",
-          "May",
-          "June",
-          "July"
+          "Mei",
+          "Juni",
+          "Juli"
         ],
         datasets: [
           {
             label: "Latest Hits",
-            data: [88, 68, 79, 57, 50, 55, 70],
+            data: [100, 68, 79, 57, 50, 55, 70],
             fill: false,
             borderColor: "rgb(75, 192, 192)",
             cubicInterpolationMode: "monotone",
@@ -180,13 +180,13 @@ function drawPieChart() {
 function updateLineChart() {
   if (lineChart) {
     lineChart.options = optionsLine;
-    lineChart.update();
+    lineChart.update('active');
   }
 }
 
 function updateBarChart() {
   if (barChart) {
     barChart.options = optionsBar;
-    barChart.update();
+    barChart.update('active');
   }
 }

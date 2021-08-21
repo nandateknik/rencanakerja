@@ -2,36 +2,11 @@
 <!-- https://jquery.com/download/ -->
 <script src="<?= base_url('assets/') ?>js/moment.min.js"></script>
 <!-- https://momentjs.com/ -->
-<script src="<?= base_url('assets/') ?>js/Chart.min.js"></script>
+<script src="<?= base_url('assets/') ?>js/Chart.js"></script>
 <!-- http://www.chartjs.org/docs/latest/ -->
 <script src="<?= base_url('assets/') ?>js/bootstrap.min.js"></script>
 <!-- https://getbootstrap.com/ -->
-<script src="<?= base_url('assets/') ?>js/tooplate-scripts.js"></script>
-<script>
-    Chart.defaults.global.defaultFontColor = 'white';
-    let ctxLine,
-        ctxBar,
-        ctxPie,
-        optionsLine,
-        optionsBar,
-        optionsPie,
-        configLine,
-        configBar,
-        configPie,
-        lineChart;
-    barChart, pieChart;
-    // DOM is ready
-    $(function() {
-        drawLineChart(); // Line Chart
-        drawBarChart(); // Bar Chart
-        drawPieChart(); // Pie Chart
 
-        $(window).resize(function() {
-            updateLineChart();
-            updateBarChart();
-        });
-    })
-</script>
 <?= $this->session->userdata('pesan'); ?>
 <?php $this->session->unset_userdata('pesan');
 ?>

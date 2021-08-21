@@ -12,6 +12,7 @@ class Mission extends CI_Controller
         parent::__construct();
         $this->load->model('mission_model');
         $this->load->library('form_validation');
+        $this->load->model('histori_model');
     }
 
     public function danger($title, $text)
@@ -66,6 +67,7 @@ class Mission extends CI_Controller
 
         if ($this->form_validation->run()) {
             $this->mission_model->insert();
+            $this->histori_model->insertLog('Membuat Missi Baru Cek Now');
             $this->success('Berhasil!', 'Berhasil menambah mission baru');
         }
 

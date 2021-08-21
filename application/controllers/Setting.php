@@ -140,7 +140,7 @@ class Setting extends CI_Controller
     public function register()
     {
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('username', 'username', 'required');
+        $this->form_validation->set_rules('username', 'username', 'required|is_unique[user.username]');
         $this->form_validation->set_rules('password', 'password', 'required|matches[passconf]');
         $this->form_validation->set_rules('passconf', 'passconf', 'required|matches[password]');
         $this->form_validation->set_rules('role_id', 'role_id', 'required');

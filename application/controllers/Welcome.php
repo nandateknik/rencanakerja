@@ -34,7 +34,11 @@ class Welcome extends CI_Controller
 		if ($this->form_validation->run()) {
 			$this->welcome_model->login();
 			if ($this->session->userdata('login')) {
-				redirect(base_url('dashboard'));
+				if ($this->session->userdata('role') == 1) {
+					redirect(base_url('dashboard'));
+				} else {
+					redirect(base_url('agenda'));
+				}
 			}
 			$this->danger('Gagal !', 'Kamu gagal login ! Silahkan cek kembali username dan password kamu.');
 		}
