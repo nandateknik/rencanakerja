@@ -21,21 +21,27 @@
                                         <input id="name" name="mission" type="text" class="form-control validate" />
                                     </div>
                                     <div class="form-group mb-3">
+                                        <label for="start">Start Mission
+                                        </label>
+                                        <input id="start" name="start" type="date" class="form-control validate" />
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="end">End Mission
+                                        </label>
+                                        <input id="end" name="end" type="date" class="form-control validate" />
+                                    </div>
+                                    <div class="form-group mb-3">
                                         <label for="description">Deskripsi</label>
                                         <textarea name="deskripsi" class="form-control validate tm-small" rows="5" required></textarea>
                                     </div>
-                                    <?php if ($this->session->userdata('role') == 1) : ?>
-                                        <div class="form-group mb-3">
-                                            <label for="category">Divisi</label>
-                                            <select name="divisi" class="custom-select tm-select-accounts" id="category">
-                                                <?php foreach ($divisi as $data) : ?>
-                                                    <option value="<?= $data->divisi ?>"><?= $data->divisi ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                    <?php else : ?>
-                                        <input type="hidden" value="<?= $this->session->userdata('divisi') ?>" name="divisi" id="">
-                                    <?php endif; ?>
+                                    <div class="form-group mb-3">
+                                        <label for="category">Kepada</label>
+                                        <select name="id_user" class="custom-select tm-select-accounts" id="category">
+                                            <?php foreach ($user as $data) : ?>
+                                                <option value="<?= $data->id ?>"><?= $data->nama ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary btn-block text-uppercase">Apply</button>

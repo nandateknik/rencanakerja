@@ -35,14 +35,15 @@
                 </div>
                 <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Pekerjaan Belum selesai</h2>
+                        <h2 class="tm-block-title">Data Pekerjaan</h2>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Mission</th>
-                                    <th scope="col">Divisi</th>
+                                    <th scope="col">Pelaksana</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,9 +51,10 @@
                                 <?php foreach ($mission as $dataMission) : ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
-                                        <td><?= $dataMission->tanggal ?></td>
+                                        <td><?= $dataMission->start ?></td>
                                         <td><?= $dataMission->mission ?></td>
-                                        <td><?= $dataMission->divisi ?></td>
+                                        <td><?= $dataMission->nama ?></td>
+                                        <td><?= $dataMission->status ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

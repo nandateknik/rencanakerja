@@ -11,17 +11,26 @@ class Mission_model extends CI_Model
         $data = array(
             'mission' => $post['mission'],
             'deskripsi' => $post['deskripsi'],
-            'divisi' => $post['divisi'],
-            'tanggal' => date('Y-m-d'),
-            'jam' => date('H:i'),
+            'id_user' => $post['id_user'],
+            'start' => $post['start'],
+            'end' => $post['end'],
             'status' => 'baru'
         );
         $this->db->insert('mission', $data);
     }
 
-    public function getDivisi()
+    public function getUser()
     {
-        return $this->db->get('divisi')->result();
+        return $this->db->get_where('user', ['role_id' => 3])->result();
+    }
+
+    public function getUserByDivisi()
+    {
+        $divisi = $this->session->userdata('divisi');
+        $this->db->where('divisi', $divisi);
+        $this->db->where('role_id', 3);
+
+        return $this->db->get('user')->result();
     }
 
     public function getByDate()
@@ -29,8 +38,8 @@ class Mission_model extends CI_Model
         $post = $this->input->post();
         $query = $this->db->select('*')
             ->from('mission')
-            ->where('tanggal >=', $post['dari'])
-            ->where('tanggal <=', $post['hingga'])
+            ->where('start >=', $post['dari'])
+            ->where('start <=', $post['hingga'])
             ->get();
         return $query->result();
     }

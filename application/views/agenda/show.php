@@ -5,31 +5,41 @@
         <?php $this->load->view('layout/navbar') ?>
         <div class="container mt-5">
             <div class="row tm-content-row">
-                <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <div class="tm-product-table-container">
-                            <h2 class="tm-block-title">Agenda hari ini</h2>
+                            <h2 class="tm-block-title">Agenda Kerja</h2>
                             <table class="table table-hover tm-table-small tm-product-table">
                                 <thead>
                                     <tr>
                                         <th scope="col">&nbsp;</th>
+                                        <th scope="col">Tanggal</th>
                                         <th scope="col">Mision Name</th>
                                         <th scope="col">status</th>
-                                        <th scope="col">Divisi</th>
+                                        <th scope="col">Pelaksana</th>
                                         <th scope="col">&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($agenda as $list) : ?>
                                         <tr>
+                                            <?php $tanggal = date('Y-m-d'); ?>
                                             <th scope="row"><input type="checkbox" /></th>
+                                            <th>
+                                                Start: <?= $list->start ?><br />End: <?= $list->end ?>
+                                            </th>
                                             <td class="tm-product-name"><?= $list->mission ?></td>
                                             <td><?= $list->status ?> </td>
-                                            <td><?= $list->divisi ?> </td>
+                                            <td><?= $list->nama ?> </td>
                                             <td>
-                                                <a href="<?= base_url('agenda/progres/' . $list->id) ?>" class="tm-product-delete-link">
-                                                    <i class="fa fa-wrench tm-product-delete-icon"></i>
-                                                </a>
+                                                <?php if ($list->start <= $tanggal && $list->end >= $tanggal) : ?>
+                                                    <a href="<?= base_url('agenda/progres/' . $list->id) ?>" class="tm-product-delete-link">
+                                                        <i class="fa fa-wrench tm-product-delete-icon"></i>
+                                                    </a>
+                                                    <a href="<?= base_url('agenda/agendaSelesai/' . $list->id) ?>" class="tm-product-delete-link">
+                                                        <i class="fa fa-check tm-product-delete-icon"></i>
+                                                    </a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -37,28 +47,6 @@
                             </table>
                         </div>
 
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
-                        <h2 class="tm-block-title">Pekerjaan Belum selesai</h2>
-                        <div class="tm-product-table-container">
-                            <table class="table tm-table-small tm-product-table">
-                                <tbody>
-                                    <?php foreach ($agendax as $data2) : ?>
-                                        <tr>
-                                            <td class="tm-product-name"><?= $data2->mission ?></td>
-                                            <td class="text-center">
-                                                <a href="<?= base_url('agenda/progres/' . $data2->id) ?>" class="tm-product-delete-link">
-                                                    <i class="fa fa-wrench tm-product-delete-icon"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- table container -->
                     </div>
                 </div>
             </div>

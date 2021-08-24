@@ -51,9 +51,9 @@ class Mission extends CI_Controller
         if ($this->form_validation->run()) {
             $data['data'] = $this->mission_model->getByDate();
             $this->load->view('mission/data', $data);
+        } else {
+            $this->load->view('mission/data');
         }
-
-        $this->load->view('mission/data');
     }
 
     public function index()
@@ -70,8 +70,12 @@ class Mission extends CI_Controller
             $this->histori_model->insertLog('Membuat Missi Baru Cek Now');
             $this->success('Berhasil!', 'Berhasil menambah mission baru');
         }
+        if ($this->session->userdata('role') == 1) {
+            $data['user'] = $this->mission_model->getUser();
+        } else {
+            $data['user'] = $this->mission_model->getUserByDivisi();
+        }
 
-        $data['divisi'] = $this->mission_model->getDivisi();
         $this->load->view('mission/tambah', $data);
     }
 }

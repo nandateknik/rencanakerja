@@ -44,14 +44,24 @@ class Agenda extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('role') == 1) {
-            $data['agendax'] = $this->agenda_model->missionx();
-            $data['agenda'] = $this->agenda_model->getMissionNow();
+        $role = $this->session->userdata('role');
+
+        if ($role == 1) {
+            $data['agenda'] = $this->agenda_model->getMission();
+        } elseif ($role == 2) {
+            $data['agenda'] = $this->agenda_model->getMissionByDivisi();
         } else {
-            $data['agendax'] = $this->agenda_model->getMissionxNowByDivisi();
-            $data['agenda'] = $this->agenda_model->getMissionNowByDivisi();
+            $data['agenda'] = $this->agenda_model->getMissionByUser();
         }
+
         $this->load->view('agenda/show', $data);
+    }
+
+    public function agendaSelesai($id)
+    {
+        $this->agenda_model->insertSelesai($id);
+        $this->success('Berhasil !', 'Tambah Progress baru');
+        redirect(base_url('agenda'));
     }
 
     public function progres($id)
@@ -64,8 +74,6 @@ class Agenda extends CI_Controller
     public function insert_progres($id = null)
     {
         $this->form_validation->set_rules('progres', 'Progres', 'required');
-        $this->form_validation->set_rules('status', 'Status', 'required');
-
         if ($this->form_validation->run()) {
             $this->agenda_model->insertProgres($id);
             $this->histori_model->insertLog('Menambah kemajuan kerja');

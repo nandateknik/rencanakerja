@@ -22,6 +22,7 @@ class Histori_model extends CI_Model
         $query = $this->db->select('log.keterangan,log.tanggal,log.jam,user.foto,user.nama')
             ->from('log')
             ->join('user', 'user.id = log.id_user')
+            ->order_by('log.id', 'desc')
             ->get();
         return $query->result();
     }
@@ -33,10 +34,9 @@ class Histori_model extends CI_Model
 
     public function getMission()
     {
-        $query = $this->db->select('*')
+        $query = $this->db->select('mission.id,mission.mission,mission.status,mission.start,mission.end,user.nama')
             ->from('mission')
-            ->where('status !=', 'selesai')
-            ->where('tanggal <', date('Y/m/d'))
+            ->join('user', 'user.id = mission.id_user')
             ->get();
         return $query->result();
     }

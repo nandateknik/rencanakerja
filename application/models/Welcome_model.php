@@ -9,6 +9,8 @@ class Welcome_model extends CI_Model
     {
         $post = $this->input->post();
         $user = $this->db->get_where('user', ['username' => $post['username']])->row();
+        $perusahaan = $this->db->get('perusahaan')->row();
+
         $this->session->set_userdata('login', false);
 
         if ($user && $user->is_active == 1) {
@@ -18,7 +20,9 @@ class Welcome_model extends CI_Model
                     'id' => $user->id,
                     'divisi' => $user->divisi,
                     'role' => $user->role_id,
-                    'login' => true
+                    'login' => true,
+                    'pt' => $perusahaan->nama,
+                    'foto' => $perusahaan->foto
                 );
                 $this->session->set_userdata($session);
             }

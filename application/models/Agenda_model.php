@@ -5,32 +5,49 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Agenda_model extends CI_Model
 {
-    public function getMissionNow()
-    {
-        return $this->db->get_where('mission', ['tanggal' => date('Y/m/d')])->result();
-    }
 
-    public function getMissionNowByDivisi()
+
+    public function getMission()
     {
-        $query = $this->db->select('*')
+        $query = $this->db->select('mission.id,mission.mission,mission.status,mission.start,mission.end,user.nama')
             ->from('mission')
-            ->where('tanggal', date('Y/m/d'))
-            ->where('divisi', $this->session->userdata('divisi'))
+            ->join('user', 'user.id = mission.id_user')
             ->get();
         return $query->result();
     }
 
-    public function getMissionxNowByDivisi()
+
+    public function getMissionByDivisi()
     {
-        $query = "SELECT * FROM mission WHERE status != 'selesai' && tanggal < '" . date('Y/m/d') . "'  && divisi = '" . $this->session->userdata('divisi') . "'";
-        return $this->db->query($query)->result();
+        $divisi = $this->session->userdata('divisi');
+
+        $query = $this->db->select('mission.id,mission.mission,mission.status,mission.start,mission.end,user.nama')
+            ->from('mission')
+            ->join('user', 'user.id = mission.id_user')
+            ->where('divisi', $divisi)
+            ->get();
+        return $query->result();
     }
 
-    public function missionx()
+    public function getMissionByUser()
     {
-        $query = "SELECT * FROM mission WHERE status != 'selesai' && tanggal < '" . date('Y/m/d') . "' ";
-        return $this->db->query($query)->result();
+        $id = $this->session->userdata('id');
+
+        $query = $this->db->select('mission.id,mission.mission,mission.status,mission.start,mission.end,user.nama')
+            ->from('mission')
+            ->join('user', 'user.id = mission.id_user')
+            ->where('id_user', $id)
+            ->get();
+        return $query->result();
     }
+
+    public function getMissionSelesai()
+    {
+        $this->db->where('status', 'selesai');
+        $this->db->order_by('id', 'desc');
+        return $this->db->get('mission')->result();
+    }
+
 
     public function getMissionById($id)
     {
@@ -44,16 +61,15 @@ class Agenda_model extends CI_Model
 
         $data = array(
             'progres' => $post['progres'],
-            'status' => $post['status'],
+            'status' => 'pending',
             'id_mission' => $id,
             'tanggal' => date('Y-m-d'),
             'jam' => date('H:i'),
             'id_user' => $idUser
         );
         $this->db->insert('progres', $data);
-        $this->updateStatusMission($id, $post['status']);
+        $this->updateStatusMission($id, 'pending');
     }
-
     public function updateStatusMission($id, $status)
     {
         $this->db->where('id', $id);
@@ -68,6 +84,20 @@ class Agenda_model extends CI_Model
             ->where('id_mission', $id)
             ->get();
         return $query->result();
+    }
+
+    public function insertSelesai($id)
+    {
+        $data = array(
+            'progres' => 'Selesai Dikerjakan',
+            'status' => 'selesai',
+            'id_mission' => $id,
+            'tanggal' => date('Y-m-d'),
+            'jam' => date('H:i'),
+            'id_user' =>  $this->session->userdata('id')
+        );
+        $this->db->insert('progres', $data);
+        $this->updateStatusMission($id, 'selesai');
     }
 }
     
